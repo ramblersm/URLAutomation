@@ -29,23 +29,32 @@ namespace URLAutomation
     [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
     public partial class UIMap
     {
+        public string urlTextValue;
+        /// <summary>
+        /// Adding URL to the browser
+        /// </summary>
+        public void AddURL()
+        {
+            #region Variable Declarations
+            BrowserWindow uIBingInternetExplorerWindow = this.UIBingInternetExplorerWindow;
+            #endregion
 
-          public string urlTextVal2;
-        
+            // Go to web page 'http://www.youtube.com/'
+            uIBingInternetExplorerWindow.NavigateToUrl(new System.Uri(this.AddURLParams.UIBingInternetExplorerWindowUrl));
+        }
         
         /// <summary>
         /// OpeningBrowser - Use 'OpeningBrowserParams' to pass parameters into this method.
         /// </summary>
-        public void OpeningBrowser(string urlText)
+        public void OpeningBrowser()
         {
             #region Variable Declarations
             HtmlDiv uISb_footPane = this.UIBingInternetExplorerWindow.UIBingDocument.UISb_footPane;
             BrowserWindow uIBingInternetExplorerWindow = this.UIBingInternetExplorerWindow;
-            urlTextVal2 = urlText;
             #endregion
 
-            // Go to web page from file using new browser instance
-            this.UIBingInternetExplorerWindow.LaunchUrl(new System.Uri(this.OpeningBrowserParams.UIBingInternetExplorerWindowUrl1));
+            // Go to web page 'http://www.bing.com/' using new browser instance
+            this.UIBingInternetExplorerWindow.LaunchUrl(new System.Uri(this.OpeningBrowserParams.UIBingInternetExplorerWindowUrl));
 
             // Set flag to allow play back to continue if non-essential actions fail. (For example, if a mouse hover action fails.)
             Playback.PlaybackSettings.ContinueOnError = true;
@@ -56,21 +65,97 @@ namespace URLAutomation
             // Reset flag to ensure that play back stops if there is an error.
             Playback.PlaybackSettings.ContinueOnError = false;
 
-            
-           // uIBingInternetExplorerWindow.NavigateToUrl(new System.Uri(this.OpeningBrowserParams.UIBingInternetExplorerWindowUrl1));
+            // Go to web page 'http://abcd.com/'
+            uIBingInternetExplorerWindow.NavigateToUrl(new System.Uri(this.OpeningBrowserParams.UIBingInternetExplorerWindowUrl1));
+        }
+        
+        /// <summary>
+        /// We use youtube-mp3 org to download converted video
+        /// </summary>
+        public void UsingActualSite(string urlText)
+        {
+            #region Variable Declarations
+            HtmlHyperlink uIVideosHyperlink = this.UIBingInternetExplorerWindow.UIBingDocument.UIVideosCustom.UIVideosHyperlink;
+            BrowserWindow uIBingInternetExplorerWindow = this.UIBingInternetExplorerWindow;
+            HtmlHyperlink uIYouTubetomp3ConverteHyperlink = this.UIBingInternetExplorerWindow.UIHttpyoutubemp3orgBinDocument.UIB_resultsCustom.UIYouTubetomp3ConverteHyperlink;
+            HtmlEdit uIYoutubeurlEdit = this.UIBingInternetExplorerWindow.UIYouTubetomp3ConverteDocument.UIYoutubeurlEdit;
+            HtmlInputButton uIConvertVideoButton = this.UIBingInternetExplorerWindow.UIYouTubetomp3ConverteDocument.UIConvertVideoButton;
+            HtmlHyperlink uIDownloadHyperlink = this.UIBingInternetExplorerWindow.UIYouTubetomp3ConverteDocument.UIDl_linkPane.UIDownloadHyperlink;
+            WinSplitButton uISaveSplitButton = this.UIBingInternetExplorerWindow.UINotificationToolBar.UISaveSplitButton;
+            urlTextValue = urlText;
+            #endregion
+
+            // Go to web page 'http://www.bing.com/' using new browser instance
+            this.UIBingInternetExplorerWindow.LaunchUrl(new System.Uri(this.UsingActualSiteParams.UIBingInternetExplorerWindowUrl));
+
+            // Set flag to allow play back to continue if non-essential actions fail. (For example, if a mouse hover action fails.)
+            Playback.PlaybackSettings.ContinueOnError = true;
+
+            // Mouse hover 'Videos' link at (1, 1)
+           // Mouse.Hover(uIVideosHyperlink, new Point(1, 1));
+
+            // Reset flag to ensure that play back stops if there is an error.
+            Playback.PlaybackSettings.ContinueOnError = false;
+
+            // Go to web page 'http://youtube-mp3.org/'
+            uIBingInternetExplorerWindow.NavigateToUrl(new System.Uri(this.UsingActualSiteParams.UIBingInternetExplorerWindowUrl1));
+
+            // Click 'YouTube to mp3 Converter' link
+          //  Mouse.Click(uIYouTubetomp3ConverteHyperlink, new Point(144, 7));
+
+            // Type 'https://www.youtube.com/watch?v=B_pvwVLv4os' in 'youtube-url' text box
+            uIYoutubeurlEdit.Text = this.UsingActualSiteParams.UIYoutubeurlEditText;
+
+            // Click 'Convert Video' button
+            Mouse.Click(uIConvertVideoButton, new Point(180, 13));
+
+            // Click 'Download' link
+            Mouse.Click(uIDownloadHyperlink, new Point(30, 7));
+
+            // Set flag to allow play back to continue if non-essential actions fail. (For example, if a mouse hover action fails.)
+            Playback.PlaybackSettings.ContinueOnError = true;
+
+            // Click 'Save' split button
+            Mouse.Click(uISaveSplitButton, new Point(42, 17));
+
+            // Reset flag to ensure that play back stops if there is an error.
+            Playback.PlaybackSettings.ContinueOnError = false;
         }
         
         #region Properties
-             
+        public virtual AddURLParams AddURLParams
+        {
+            get
+            {
+                if ((this.mAddURLParams == null))
+                {
+                    this.mAddURLParams = new AddURLParams();
+                }
+                return this.mAddURLParams;
+            }
+        }
+        
         public virtual OpeningBrowserParams OpeningBrowserParams
         {
             get
             {
                 if ((this.mOpeningBrowserParams == null))
                 {
-                    this.mOpeningBrowserParams = new OpeningBrowserParams(urlTextVal2);
+                    this.mOpeningBrowserParams = new OpeningBrowserParams();
                 }
                 return this.mOpeningBrowserParams;
+            }
+        }
+        
+        public virtual UsingActualSiteParams UsingActualSiteParams
+        {
+            get
+            {
+                if ((this.mUsingActualSiteParams == null))
+                {
+                    this.mUsingActualSiteParams = new UsingActualSiteParams(urlTextValue);
+                }
+                return this.mUsingActualSiteParams;
             }
         }
         
@@ -92,8 +177,9 @@ namespace URLAutomation
         
         private OpeningBrowserParams mOpeningBrowserParams;
         
+        private UsingActualSiteParams mUsingActualSiteParams;
+        
         private UIBingInternetExplorerWindow mUIBingInternetExplorerWindow;
-       
         #endregion
     }
     
@@ -129,13 +215,38 @@ namespace URLAutomation
         /// Go to web page 'http://abcd.com/'
         /// </summary>
         public string UIBingInternetExplorerWindowUrl1 = "http://abcd.com/";
-       private string urlTextValue;
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'UsingActualSite'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UsingActualSiteParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Go to web page 'http://www.bing.com/' using new browser instance
+        /// </summary>
+        public string UIBingInternetExplorerWindowUrl = "http://www.bing.com/";
+        
+        /// <summary>
+        /// Go to web page 'http://youtube-mp3.org/'
+        /// </summary>
+        public string UIBingInternetExplorerWindowUrl1 = "http://youtube-mp3.org/";
+        
+        /// <summary>
+        /// Type 'https://www.youtube.com/watch?v=B_pvwVLv4os' in 'youtube-url' text box
+        /// </summary>
+        public string UIYoutubeurlEditText = "https://www.youtube.com/watch?v=B_pvwVLv4os";
+        //private string urlTextValue;
 
-        public OpeningBrowserParams(string urlTextVal)
+        public UsingActualSiteParams(string urlTextValue)
         {
             // TODO: Complete member initialization
-           this.urlTextValue = urlTextVal;
-            UIBingInternetExplorerWindowUrl1 = urlTextValue;
+            //this.urlTextValue = urlTextValue;
+            UIYoutubeurlEditText = urlTextValue;
         }
         #endregion
     }
@@ -151,6 +262,8 @@ namespace URLAutomation
             this.SearchProperties[UITestControl.PropertyNames.ClassName] = "IEFrame";
             this.WindowTitles.Add("Bing");
             this.WindowTitles.Add("Blank Page");
+            this.WindowTitles.Add("http://youtube-mp3.org%20-%20bing/");
+            this.WindowTitles.Add("YouTube to mp3 Converter");
             #endregion
         }
         
@@ -195,6 +308,42 @@ namespace URLAutomation
                 return this.mUIBingTabPage;
             }
         }
+        
+        public UIHttpyoutubemp3orgBinDocument UIHttpyoutubemp3orgBinDocument
+        {
+            get
+            {
+                if ((this.mUIHttpyoutubemp3orgBinDocument == null))
+                {
+                    this.mUIHttpyoutubemp3orgBinDocument = new UIHttpyoutubemp3orgBinDocument(this);
+                }
+                return this.mUIHttpyoutubemp3orgBinDocument;
+            }
+        }
+        
+        public UIYouTubetomp3ConverteDocument UIYouTubetomp3ConverteDocument
+        {
+            get
+            {
+                if ((this.mUIYouTubetomp3ConverteDocument == null))
+                {
+                    this.mUIYouTubetomp3ConverteDocument = new UIYouTubetomp3ConverteDocument(this);
+                }
+                return this.mUIYouTubetomp3ConverteDocument;
+            }
+        }
+        
+        public UINotificationToolBar UINotificationToolBar
+        {
+            get
+            {
+                if ((this.mUINotificationToolBar == null))
+                {
+                    this.mUINotificationToolBar = new UINotificationToolBar(this);
+                }
+                return this.mUINotificationToolBar;
+            }
+        }
         #endregion
         
         #region Fields
@@ -203,6 +352,12 @@ namespace URLAutomation
         private UIBingDocument mUIBingDocument;
         
         private UIBingTabPage mUIBingTabPage;
+        
+        private UIHttpyoutubemp3orgBinDocument mUIHttpyoutubemp3orgBinDocument;
+        
+        private UIYouTubetomp3ConverteDocument mUIYouTubetomp3ConverteDocument;
+        
+        private UINotificationToolBar mUINotificationToolBar;
         #endregion
     }
     
@@ -313,10 +468,75 @@ namespace URLAutomation
                 return this.mUISb_footPane;
             }
         }
+        
+        public UIVideosCustom UIVideosCustom
+        {
+            get
+            {
+                if ((this.mUIVideosCustom == null))
+                {
+                    this.mUIVideosCustom = new UIVideosCustom(this);
+                }
+                return this.mUIVideosCustom;
+            }
+        }
         #endregion
         
         #region Fields
         private HtmlDiv mUISb_footPane;
+        
+        private UIVideosCustom mUIVideosCustom;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UIVideosCustom : HtmlCustom
+    {
+        
+        public UIVideosCustom(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties["TagName"] = "LI";
+            this.SearchProperties["Id"] = "scpt2";
+            this.SearchProperties[UITestControl.PropertyNames.Name] = null;
+            this.FilterProperties["Class"] = null;
+            this.FilterProperties["ControlDefinition"] = "id=\"scpt2\" data-bm=\"2\"";
+            this.FilterProperties["InnerText"] = "Videos";
+            this.FilterProperties["TagInstance"] = "3";
+            this.WindowTitles.Add("Bing");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlHyperlink UIVideosHyperlink
+        {
+            get
+            {
+                if ((this.mUIVideosHyperlink == null))
+                {
+                    this.mUIVideosHyperlink = new HtmlHyperlink(this);
+                    #region Search Criteria
+                    this.mUIVideosHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Id] = null;
+                    this.mUIVideosHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Name] = null;
+                    this.mUIVideosHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Target] = null;
+                    this.mUIVideosHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.InnerText] = "Videos";
+                    this.mUIVideosHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.AbsolutePath] = "/";
+                    this.mUIVideosHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Title] = null;
+                    this.mUIVideosHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Href] = "http://www.bing.com/?scope=video&FORM=Z9LH2";
+                    this.mUIVideosHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Class] = null;
+                    this.mUIVideosHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.ControlDefinition] = "onclick=\"selectScope(this, \'video\');\" hr";
+                    this.mUIVideosHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.TagInstance] = "1";
+                    this.mUIVideosHyperlink.WindowTitles.Add("Bing");
+                    #endregion
+                }
+                return this.mUIVideosHyperlink;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlHyperlink mUIVideosHyperlink;
         #endregion
     }
     
@@ -353,6 +573,268 @@ namespace URLAutomation
         
         #region Fields
         private WinButton mUICloseTabCtrlWButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UIHttpyoutubemp3orgBinDocument : HtmlDocument
+    {
+        
+        public UIHttpyoutubemp3orgBinDocument(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "http://youtube-mp3.org - Bing";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/search";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "http://www.bing.com/search?q=http%3A%2F%2Fyoutube-mp3.org";
+            this.WindowTitles.Add("http://youtube-mp3.org%20-%20bing/");
+            #endregion
+        }
+        
+        #region Properties
+        public UIB_resultsCustom UIB_resultsCustom
+        {
+            get
+            {
+                if ((this.mUIB_resultsCustom == null))
+                {
+                    this.mUIB_resultsCustom = new UIB_resultsCustom(this);
+                }
+                return this.mUIB_resultsCustom;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIB_resultsCustom mUIB_resultsCustom;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UIB_resultsCustom : HtmlCustom
+    {
+        
+        public UIB_resultsCustom(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties["TagName"] = "OL";
+            this.SearchProperties["Id"] = "b_results";
+            this.SearchProperties[UITestControl.PropertyNames.Name] = null;
+            this.FilterProperties["Class"] = null;
+            this.FilterProperties["ControlDefinition"] = "id=\"b_results\"";
+            this.FilterProperties["TagInstance"] = "1";
+            this.WindowTitles.Add("http://youtube-mp3.org%20-%20bing/");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlHyperlink UIYouTubetomp3ConverteHyperlink
+        {
+            get
+            {
+                if ((this.mUIYouTubetomp3ConverteHyperlink == null))
+                {
+                    this.mUIYouTubetomp3ConverteHyperlink = new HtmlHyperlink(this);
+                    #region Search Criteria
+                    this.mUIYouTubetomp3ConverteHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Id] = null;
+                    this.mUIYouTubetomp3ConverteHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Name] = null;
+                    this.mUIYouTubetomp3ConverteHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Target] = null;
+                    this.mUIYouTubetomp3ConverteHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.InnerText] = "YouTube to mp3 Converter";
+                    this.mUIYouTubetomp3ConverteHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.AbsolutePath] = "/";
+                    this.mUIYouTubetomp3ConverteHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Title] = null;
+                    this.mUIYouTubetomp3ConverteHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Href] = "http://www.youtube-mp3.org/";
+                    this.mUIYouTubetomp3ConverteHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Class] = null;
+                    this.mUIYouTubetomp3ConverteHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.ControlDefinition] = "href=\"http://www.youtube-mp3.org/\" h=\"ID";
+                    this.mUIYouTubetomp3ConverteHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.TagInstance] = "1";
+                    this.mUIYouTubetomp3ConverteHyperlink.WindowTitles.Add("http://youtube-mp3.org%20-%20bing/");
+                    #endregion
+                }
+                return this.mUIYouTubetomp3ConverteHyperlink;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlHyperlink mUIYouTubetomp3ConverteHyperlink;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UIYouTubetomp3ConverteDocument : HtmlDocument
+    {
+        
+        public UIYouTubetomp3ConverteDocument(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[HtmlDocument.PropertyNames.Id] = null;
+            this.SearchProperties[HtmlDocument.PropertyNames.RedirectingPage] = "False";
+            this.SearchProperties[HtmlDocument.PropertyNames.FrameDocument] = "False";
+            this.FilterProperties[HtmlDocument.PropertyNames.Title] = "YouTube to mp3 Converter";
+            this.FilterProperties[HtmlDocument.PropertyNames.AbsolutePath] = "/";
+            this.FilterProperties[HtmlDocument.PropertyNames.PageUrl] = "http://www.youtube-mp3.org/";
+            this.WindowTitles.Add("YouTube to mp3 Converter");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlEdit UIYoutubeurlEdit
+        {
+            get
+            {
+                if ((this.mUIYoutubeurlEdit == null))
+                {
+                    this.mUIYoutubeurlEdit = new HtmlEdit(this);
+                    #region Search Criteria
+                    this.mUIYoutubeurlEdit.SearchProperties[HtmlEdit.PropertyNames.Id] = "youtube-url";
+                    this.mUIYoutubeurlEdit.SearchProperties[HtmlEdit.PropertyNames.Name] = null;
+                    this.mUIYoutubeurlEdit.SearchProperties[HtmlEdit.PropertyNames.LabeledBy] = null;
+                    this.mUIYoutubeurlEdit.SearchProperties[HtmlEdit.PropertyNames.Type] = "SINGLELINE";
+                    this.mUIYoutubeurlEdit.FilterProperties[HtmlEdit.PropertyNames.Title] = null;
+                    this.mUIYoutubeurlEdit.FilterProperties[HtmlEdit.PropertyNames.Class] = null;
+                    this.mUIYoutubeurlEdit.FilterProperties[HtmlEdit.PropertyNames.ControlDefinition] = "id=\"youtube-url\" onclick=\"sAll(this)\" ty";
+                    this.mUIYoutubeurlEdit.FilterProperties[HtmlEdit.PropertyNames.TagInstance] = "4";
+                    this.mUIYoutubeurlEdit.WindowTitles.Add("YouTube to mp3 Converter");
+                    #endregion
+                }
+                return this.mUIYoutubeurlEdit;
+            }
+        }
+        
+        public HtmlInputButton UIConvertVideoButton
+        {
+            get
+            {
+                if ((this.mUIConvertVideoButton == null))
+                {
+                    this.mUIConvertVideoButton = new HtmlInputButton(this);
+                    #region Search Criteria
+                    this.mUIConvertVideoButton.SearchProperties[HtmlButton.PropertyNames.Id] = "submit";
+                    this.mUIConvertVideoButton.SearchProperties[HtmlButton.PropertyNames.Name] = null;
+                    this.mUIConvertVideoButton.SearchProperties[HtmlButton.PropertyNames.DisplayText] = "Convert Video";
+                    this.mUIConvertVideoButton.SearchProperties[HtmlButton.PropertyNames.Type] = "submit";
+                    this.mUIConvertVideoButton.FilterProperties[HtmlButton.PropertyNames.Title] = null;
+                    this.mUIConvertVideoButton.FilterProperties[HtmlButton.PropertyNames.Class] = null;
+                    this.mUIConvertVideoButton.FilterProperties[HtmlButton.PropertyNames.ControlDefinition] = "id=\"submit\" type=\"submit\" value=\"Convert";
+                    this.mUIConvertVideoButton.FilterProperties[HtmlButton.PropertyNames.TagInstance] = "5";
+                    this.mUIConvertVideoButton.WindowTitles.Add("YouTube to mp3 Converter");
+                    #endregion
+                }
+                return this.mUIConvertVideoButton;
+            }
+        }
+        
+        public UIDl_linkPane UIDl_linkPane
+        {
+            get
+            {
+                if ((this.mUIDl_linkPane == null))
+                {
+                    this.mUIDl_linkPane = new UIDl_linkPane(this);
+                }
+                return this.mUIDl_linkPane;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlEdit mUIYoutubeurlEdit;
+        
+        private HtmlInputButton mUIConvertVideoButton;
+        
+        private UIDl_linkPane mUIDl_linkPane;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UIDl_linkPane : HtmlDiv
+    {
+        
+        public UIDl_linkPane(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[HtmlDiv.PropertyNames.Id] = "dl_link";
+            this.SearchProperties[HtmlDiv.PropertyNames.Name] = null;
+            this.FilterProperties[HtmlDiv.PropertyNames.InnerText] = "DownloadDownloadDownloadDownloadDownload";
+            this.FilterProperties[HtmlDiv.PropertyNames.Title] = null;
+            this.FilterProperties[HtmlDiv.PropertyNames.Class] = null;
+            this.FilterProperties[HtmlDiv.PropertyNames.ControlDefinition] = "id=\"dl_link\" style=\"display: block;\"";
+            this.FilterProperties[HtmlDiv.PropertyNames.TagInstance] = "18";
+            this.WindowTitles.Add("YouTube to mp3 Converter");
+            #endregion
+        }
+        
+        #region Properties
+        public HtmlHyperlink UIDownloadHyperlink
+        {
+            get
+            {
+                if ((this.mUIDownloadHyperlink == null))
+                {
+                    this.mUIDownloadHyperlink = new HtmlHyperlink(this);
+                    #region Search Criteria
+                    this.mUIDownloadHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Id] = null;
+                    this.mUIDownloadHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Name] = null;
+                    this.mUIDownloadHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.Target] = null;
+                    this.mUIDownloadHyperlink.SearchProperties[HtmlHyperlink.PropertyNames.InnerText] = "Download";
+                    this.mUIDownloadHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.AbsolutePath] = "/get";
+                    this.mUIDownloadHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Title] = null;
+                    this.mUIDownloadHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Href] = "http://www.youtube-mp3.org/get?video_id=B_pvwVLv4os&ts_create=1442181437&r=MTgzLj" +
+                        "gzLjEuMTU1&h2=89ce928100441521f050cf78dda2d4b2&s=51049";
+                    this.mUIDownloadHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.Class] = null;
+                    this.mUIDownloadHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.ControlDefinition] = "href=\"/get?video_id=B_pvwVLv4os&amp;ts_c";
+                    this.mUIDownloadHyperlink.FilterProperties[HtmlHyperlink.PropertyNames.TagInstance] = "3";
+                    this.mUIDownloadHyperlink.WindowTitles.Add("YouTube to mp3 Converter");
+                    #endregion
+                }
+                return this.mUIDownloadHyperlink;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private HtmlHyperlink mUIDownloadHyperlink;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "12.0.31101.0")]
+    public class UINotificationToolBar : WinToolBar
+    {
+        
+        public UINotificationToolBar(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinToolBar.PropertyNames.Name] = "Notification";
+            this.WindowTitles.Add("YouTube to mp3 Converter");
+            #endregion
+        }
+        
+        #region Properties
+        public WinSplitButton UISaveSplitButton
+        {
+            get
+            {
+                if ((this.mUISaveSplitButton == null))
+                {
+                    this.mUISaveSplitButton = new WinSplitButton(this);
+                    #region Search Criteria
+                    this.mUISaveSplitButton.SearchProperties[WinButton.PropertyNames.Name] = "Save";
+                    this.mUISaveSplitButton.WindowTitles.Add("YouTube to mp3 Converter");
+                    #endregion
+                }
+                return this.mUISaveSplitButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinSplitButton mUISaveSplitButton;
         #endregion
     }
 }
